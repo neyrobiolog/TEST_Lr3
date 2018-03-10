@@ -16,5 +16,12 @@ import static org.junit.Assert.*;
  * @author neyrobiolog
  */
 public class TestConvertWeight {
-
+    
+    @Test
+    void conWeightClassCreationTest() 
+    {
+        ConWeight conlength = new ConWeight();
+        assertNotNull(conlength);
+    }
+    
 }
