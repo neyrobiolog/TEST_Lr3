@@ -58,5 +58,29 @@ public class TestConvertWeight {
         double result = weight.conToKG(2, 0);
         assertEquals(0.002, result, EPS);
     }
+        
+    //Значения перевода величин в килограммы
+    public static double[] values = {
+        0.001, //Грамм
+        1, //Киллограм
+        1000, //Тонна
+        43.36, //Квитал
+        11.34, //Квартер
+        6.35, //Стоун
+        0.01638, //Лот
+        0.00426, //Золотник
+        0.00004 //Доля
+    };
+    
+    @Test
+    //Тест на конвертирование в килограммы (2)
+    public void testConToKG() {
+        double weight = 2.0;
+        for (int i = 0; i < 9; i++) 
+        {
+            double result = ConWeight.conToKG(weight, i);
+            assertEquals(values[i] * weight, result, EPS);
+        }
+    }
     
 }
