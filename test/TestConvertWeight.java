@@ -84,8 +84,8 @@ public class TestConvertWeight {
     }
     
     @Test
-    //Тест на конвертирование в систему СИ
-    public void testConToSi() {
+    //Тест на конвертирование из системы СИ
+    public void testConFromSi() {
         double weight = 2.0;
         for(int i = 0; i < 3; i++) 
         {

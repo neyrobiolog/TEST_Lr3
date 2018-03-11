@@ -36,4 +36,15 @@ public class ConWeight {
     public static double conToKG(double weight, int system) {
         return weight * values[system];
     }
+    
+    /**
+     * Конвертирование массы из одной системы в другую
+     * @param weight масса, которую необходимо конфертировать, тип double
+     * @param systemFrom номер системы, из которой конвертируем, тип int
+     * @param systemTo номер системы, в которую конвертируем, тип int
+     * @return полученная в результате конвертирования масса в нужной системе, тип double 
+     */
+    public static double converting(double weight, int systemFrom, int systemTo) {
+        return conToKG(weight, systemFrom) / values[systemTo];
+    }
 }
