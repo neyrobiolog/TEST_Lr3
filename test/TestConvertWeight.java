@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
  */
 public class TestConvertWeight {
     
+    public double EPS = 0.0001;
+    
     @Test
     public void conWeightClassCreationTest() 
     {
@@ -21,4 +23,13 @@ public class TestConvertWeight {
         assertNotNull(conlength);
     }
     
+    @Test
+    //Тест на проверку конвертирования в килограммы для СИ
+   public void conToKGSITest() {
+        ConWeight weight = new ConWeight();
+        assertEquals(0.001, weight.values[0], EPS);     //граммы
+        assertEquals(1, weight.values[1], EPS);         //килограммы
+        assertEquals(1000, weight.values[2], EPS);      //тонны
+    }
+
 }
