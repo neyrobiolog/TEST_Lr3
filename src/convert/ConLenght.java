@@ -26,5 +26,15 @@ public class ConLenght {
         2.133,//сажень
         0.711//аршин
     };
+        
+    /**
+     * Конвертирование полученного значения длины в метры
+     * @param length длина, которую необходимо конфертировать, тип double
+     * @param system номер системы, из которой конвертируем, тип int
+     * @return полученная в результате конвертирования длина в метрах, тип double 
+     */
+    public static double conToM(double length, int system) {
+        return 0.02;
+    }
     
 }
