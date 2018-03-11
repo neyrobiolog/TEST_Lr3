@@ -36,5 +36,4 @@ public class ConWeight {
     public static double conToKG(double weight, int system) {
         return weight * values[system];
     }
-    
 }
