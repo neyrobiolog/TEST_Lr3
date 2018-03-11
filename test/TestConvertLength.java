@@ -80,6 +80,26 @@ public class TestConvertLength {
             assertEquals(values[i] * weight, result, EPS);
         }
     }
-    
+        
+    @Test
+    //Тест на конвертирование из системы СИ
+    public void testConFromSi() {
+        double weight = 2.0;
+        for(int i = 0; i < 3; i++) 
+        {
+            for(int j = 0; j < 3; j++) 
+            {
+                double kg = ConLenght.conToM(weight, i);
+                double resultSi = kg / values[j];
+                double resultUsa = kg / values[j + 3];
+                double resultRus = kg / values[j + 6];
+                
+                assertEquals(resultSi, ConLenght.converting(weight, i, j), EPS);
+                assertEquals(resultUsa, ConLenght.converting(weight, i, j + 3), EPS);
+                assertEquals(resultRus, ConLenght.converting(weight, i, j + 6), EPS);
+            }
+        }
+    } 
+     
      
 }
