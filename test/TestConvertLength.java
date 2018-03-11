@@ -49,4 +49,12 @@ public class TestConvertLength {
         assertEquals(0.711, weight.values[8], EPS);     //аршин
     }
 
+    @Test
+    //Тест на конвертирование в метры из сантиметров
+    public void conToM() {
+        ConLenght weight = new ConLenght();
+        double result = weight.conToM(2, 0);
+        assertEquals(0.02, result, EPS);
+    }
+     
 }
