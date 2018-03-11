@@ -31,5 +31,15 @@ public class TestConvertWeight {
         assertEquals(1, weight.values[1], EPS);         //килограммы
         assertEquals(1000, weight.values[2], EPS);      //тонны
     }
+   
+       @Test
+    //Тест на проверку значений конвертирования в килограммы для Американской системы
+   public void conToKGUSATest() {
+        ConWeight weight = new ConWeight();
+        assertEquals(43.36, weight.values[3], EPS);     //квитал
+        assertEquals(11.34, weight.values[4], EPS);     //кквартер
+        assertEquals(6.35, weight.values[5], EPS);      //стоун
+    }
+
 
 }
