@@ -24,7 +24,7 @@ public class TestConvertWeight {
     }
     
     @Test
-    //Тест на проверку конвертирования в килограммы для СИ
+    //Тест на проверку значений конвертирования в килограммы для СИ
    public void conToKGSITest() {
         ConWeight weight = new ConWeight();
         assertEquals(0.001, weight.values[0], EPS);     //граммы
