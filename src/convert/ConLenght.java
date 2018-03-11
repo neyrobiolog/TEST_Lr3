@@ -13,5 +13,12 @@ public class ConLenght {
     
     //Конструктор класса
     public ConLenght() {};
+        
+    //Коэффициенты перевода в метры
+    public static double[] values = {
+        0.01,   //сантиметр
+        1,      //метр
+        1000,   //киллометр
+    };
     
 }
