@@ -9,8 +9,15 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Вова
+ * @author neyrobiolog
  */
 public class TestConvertLength {
+    
+    @Test
+    public void conLengthClassCreationTest() 
+    {
+        ConLenght length = new ConLenght();
+        assertNotNull(length);
+    }
     
 }
