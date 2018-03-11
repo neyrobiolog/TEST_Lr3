@@ -33,8 +33,8 @@ public class ConWeight {
      * @param system номер системы, из которой конвертируем, тип int
      * @return полученная в результате конвертирования масса в киллограмах, тип double 
      */
-    public static double convertToKillogram(double weight, int system) {
-        return weight * values[system];
+    public static double conToKG(double weight, int system) {
+        return 0.002;
     }
     
 }
