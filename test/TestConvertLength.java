@@ -129,7 +129,7 @@ public class TestConvertLength {
         {
             for(int j = 0; j < 3; j++) 
             {
-                double kg = ConLenght.conToKG(weight, i + 6);
+                double kg = ConLenght.conToM(weight, i + 6);
                 double resultSi = kg / values[j];
                 double resultUsa = kg / values[j + 3];
                 double resultRus = kg / values[j + 6];
