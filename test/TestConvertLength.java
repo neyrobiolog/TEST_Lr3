@@ -40,4 +40,13 @@ public class TestConvertLength {
         assertEquals(0.9144, weight.values[5], EPS);   //ярд
     }
 
+    @Test
+    //Тест на проверку коэффициентов конвертирования в метры для Старорусской системы
+    public void conToMRUSTest() {
+        ConLenght weight = new ConLenght();
+        assertEquals(1066.8, weight.values[6], EPS);    //верста
+        assertEquals(2.133, weight.values[7], EPS);     //сажень
+        assertEquals(0.711, weight.values[8], EPS);     //аршин
+    }
+
 }
