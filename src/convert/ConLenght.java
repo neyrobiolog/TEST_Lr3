@@ -36,5 +36,15 @@ public class ConLenght {
     public static double conToM(double length, int system) {
         return length * values[system];
     }
-    
+        
+    /**
+     * Конвертирование длины из одной системы в другую
+     * @param length длины, которую необходимо конфертировать, тип double
+     * @param systemFrom номер системы, из которой конвертируем, тип int
+     * @param systemTo номер системы, в которую конвертируем, тип int
+     * @return полученная в результате конвертирования длины в нужной системе, тип double 
+     */
+    public static double convert(double length, int systemFrom, int systemTo) {
+        return conToM(length, systemFrom) / values[systemTo];
+    }
 }
