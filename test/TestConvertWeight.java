@@ -41,5 +41,13 @@ public class TestConvertWeight {
         assertEquals(6.35, weight.values[5], EPS);      //стоун
     }
 
+       @Test
+    //Тест на проверку значений конвертирования в килограммы для Старорусской системы
+   public void conToKGRUSTest() {
+        ConWeight weight = new ConWeight();
+        assertEquals(0.01638, weight.values[6], EPS);     //лот
+        assertEquals(0.00426, weight.values[7], EPS);     //золотник
+        assertEquals(0.00004, weight.values[8], EPS);      //доля
+    }
 
 }
