@@ -30,5 +30,14 @@ public class TestConvertLength {
         assertEquals(1, weight.values[1], EPS);         //метры
         assertEquals(1000, weight.values[2], EPS);      //километры
     }
-   
+    
+   @Test
+    //Тест на проверку коэффициентов конвертирования в метры для Американской системы
+   public void conToMUSATest() {
+        ConLenght weight = new ConLenght();
+        assertEquals(1852, weight.values[3], EPS);     //миля
+        assertEquals(0.3, weight.values[4], EPS);      //фут
+        assertEquals(0.9144, weight.values[5], EPS);   //ярд
+    }
+
 }
