@@ -34,7 +34,7 @@ public class ConLenght {
      * @return полученная в результате конвертирования длина в метрах, тип double 
      */
     public static double conToM(double length, int system) {
-        return 0.02;
+        return length * values[system];
     }
     
 }
