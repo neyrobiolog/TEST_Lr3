@@ -50,4 +50,13 @@ public class TestConvertWeight {
         assertEquals(0.00004, weight.values[8], EPS);      //доля
     }
 
+    @Test
+    //Тест на конвертирование в килограммы
+    public void testConvertToKillogram() {
+        //Из граммов в килограммы
+        ConWeight weight = new ConWeight();
+        double result = weight.conToKG(2, 0);
+        assertEquals(0.002, result, EPS);
+    }
+    
 }
