@@ -20,4 +20,13 @@ public class TestConvertLength {
         assertNotNull(length);
     }
     
+    @Test
+    //Тест на проверку коэффициентов конвертирования в метры для СИ
+   public void conToMSITest() {
+        ConLenght weight = new ConLenght();
+        assertEquals(0.001, weight.values[0], EPS);     //сантиметры
+        assertEquals(1, weight.values[1], EPS);         //метры
+        assertEquals(1000, weight.values[2], EPS);      //километры
+    }
+   
 }
