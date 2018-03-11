@@ -44,7 +44,7 @@ public class ConLenght {
      * @param systemTo номер системы, в которую конвертируем, тип int
      * @return полученная в результате конвертирования длины в нужной системе, тип double 
      */
-    public static double convert(double length, int systemFrom, int systemTo) {
+    public static double converting(double length, int systemFrom, int systemTo) {
         return conToM(length, systemFrom) / values[systemTo];
     }
 }
