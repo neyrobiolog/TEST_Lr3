@@ -56,5 +56,30 @@ public class TestConvertLength {
         double result = weight.conToM(2, 0);
         assertEquals(0.02, result, EPS);
     }
+         
+    //Коэффициенты перевода в метры
+    public static double[] values = {
+        0.01,   //сантиметр
+        1,      //метр
+        1000,   //киллометр
+        1852,   //миля
+        0.3,    //фут
+        0.9144, //ярд
+        1066.8,//верста
+        2.133,//сажень
+        0.711//аршин
+    };
+      
+    @Test
+    //Тест на конвертирование в метры (2)
+    public void сonToMTest2() {
+        double weight = 2.0;
+        for (int i = 0; i < 9; i++) 
+        {
+            double result = ConLenght.conToM(weight, i);
+            assertEquals(values[i] * weight, result, EPS);
+        }
+    }
+    
      
 }
