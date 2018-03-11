@@ -102,4 +102,24 @@ public class TestConvertWeight {
             }
         }
     } 
+        
+    @Test
+    //Тест на конвертирование из Американской системы
+    public void testConFromUSA() {
+        double weight = 2.0;
+        for(int i = 0; i < 3; i++) 
+        {
+            for(int j = 0; j < 3; j++) 
+            {
+                double kg = ConWeight.conToKG(weight, i + 3);
+                double resultSi = kg / values[j];
+                double resultUsa = kg / values[j + 3];
+                double resultRus = kg / values[j + 6];
+                
+                assertEquals(resultSi, ConWeight.converting(weight, i + 3, j), EPS);
+                assertEquals(resultUsa, ConWeight.converting(weight, i + 3, j + 3), EPS);
+                assertEquals(resultRus, ConWeight.converting(weight, i + 3, j + 6), EPS);
+            }
+        }
+    }
 }
