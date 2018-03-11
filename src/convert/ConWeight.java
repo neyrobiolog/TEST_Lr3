@@ -15,7 +15,7 @@ public class ConWeight {
     public ConWeight() {};
     
     //Значения перевода величин в килограммы
-    public double[] values = {
+    public static double[] values = {
         0.001, //Грамм
         1, //Киллограм
         1000, //Тонна
@@ -26,4 +26,15 @@ public class ConWeight {
         0.00426, //Золотник
         0.00004 //Доля
     };
+    
+    /**
+     * Конвертирование полученного значения массы в киллограммы
+     * @param weight масса, которую необходимо конфертировать, тип double
+     * @param system номер системы, из которой конвертируем, тип int
+     * @return полученная в результате конвертирования масса в киллограмах, тип double 
+     */
+    public static double convertToKillogram(double weight, int system) {
+        return weight * values[system];
+    }
+    
 }
