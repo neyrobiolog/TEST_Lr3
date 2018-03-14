@@ -44,13 +44,18 @@ public class ConWeight {
     };
     
     /**
-     * Конвертирование полученного значения массы в киллограммы
+     * Конвертирование полученного значения массы в киллограммы по формуле: 
+     * масса * коэффициент перевода в килограммы для полученной единицы измерения
      * @param weight масса, которую необходимо конфертировать, тип double
-     * @param system номер системы, из которой конвертируем, тип int
-     * @return полученная в результате конвертирования масса в киллограмах, тип double 
+     * @param edIzm единица измерения, из которой конвертируем, тип int
+     * @return полученная в результате конвертирования масса в киллограмах, тип double
+     * @throws return -1 в случае, если передается непредусмотренная единица измерения 
      */
-    public static double conToKG(double weight, int system) {
-        return weight * values[system];
+    public static double conToKG(double weight, int edIzm) {
+        if (edIzm < 0 || edIzm > 9)
+            return -1;
+        else
+            return weight * values[edIzm];
     }
     
     /**
