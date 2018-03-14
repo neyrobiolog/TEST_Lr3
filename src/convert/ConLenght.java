@@ -59,13 +59,18 @@ public class ConLenght {
     }
     
     /**
-     * Конвертирование длины из одной системы в другую
-     * @param length длины, которую необходимо конфертировать, тип double
-     * @param systemFrom номер системы, из которой конвертируем, тип int
-     * @param systemTo номер системы, в которую конвертируем, тип int
-     * @return полученная в результате конвертирования длины в нужной системе, тип double 
+     * Конвертирование длины из одной единицы измерения в другую по формуле:
+     * полученная длина, переведенная в метры / коэффициент ед. измерения, в которую переводим
+     * @param length длина, которую необходимо конфертировать, тип double
+     * @param edIzmFrom единица измерения, из которой конвертируем, тип int
+     * @param systemTo единица измерения, в которую конвертируем, тип int
+     * @return полученная в результате конвертирования длины в нужной системе, тип double
+     * @throws return -1 в случае, если передается непредусмотренная единица измерения   
      */
-    public static double converting(double length, int systemFrom, int systemTo) {
-        return conToM(length, systemFrom) / values[systemTo];
+    public static double converting(double length, int edIzmFrom, int edIzmTo) {
+        if ((edIzmFrom < 0 || edIzmFrom > 9) || (edIzmTo < 0 || edIzmTo > 9))
+            return -1;
+        else
+            return conToM(length, edIzmFrom) / values[edIzmTo];
     }
 }
