@@ -59,13 +59,17 @@ public class ConWeight {
     }
     
     /**
-     * Конвертирование массы из одной системы в другую
+     * Конвертирование массы из одной единицы измерения в другую по формуле:
+     * полученная масса, переведенная в килограммы / коэффициент ед. измерения, в который переводим
      * @param weight масса, которую необходимо конфертировать, тип double
-     * @param systemFrom номер системы, из которой конвертируем, тип int
-     * @param systemTo номер системы, в которую конвертируем, тип int
-     * @return полученная в результате конвертирования масса в нужной системе, тип double 
+     * @param edIzmFrom единица измерения, из которой конвертируем, тип int
+     * @param edIzmTo единица измерения, в которую конвертируем, тип int
+     * @return полученная в результате конвертирования масса в нужной системе, тип double
+     * @throws return -1 в случае, если передаются непредусмотренные единицы измерения 
      */
-    public static double converting(double weight, int systemFrom, int systemTo) {
-        return conToKG(weight, systemFrom) / values[systemTo];
+    public static double converting(double weight, int edIzmFrom, int edIzmTo) {
+        if ((edIzmFrom < 0 || edIzmFrom > 9) || (edIzmTo < 0 || edIzmTo > 9))
+            return -1;
+        return conToKG(weight, edIzmFrom) / values[edIzmTo];
     }
 }
