@@ -142,4 +142,13 @@ public class TestConvertWeight {
             }
         }
     }
+    
+    @Test
+    //Тест на конвертирование в килограммы из непредусмотренных единиц измерения
+    public void testConEx() {
+        double weight = 2.0;
+        int DECIMETR = 10;
+        
+        assertEquals(-1, ConWeight.conToKG(weight, DECIMETR), EPS);
+    }
 }
