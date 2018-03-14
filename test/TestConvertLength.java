@@ -139,5 +139,15 @@ public class TestConvertLength {
                 assertEquals(resultRus, ConLenght.converting(weight, i + 6, j + 6), EPS);
             }
         }
-    }   
+    }
+    
+        
+    @Test
+    //Тест на конвертирование в метры из непредусмотренных единиц измерения
+    public void testConEx() {
+        double length = 2.0;
+        int DECIMETR = 10;
+        
+        assertEquals(-1, ConLenght.conToM(length, DECIMETR), EPS);
+    }
 }
