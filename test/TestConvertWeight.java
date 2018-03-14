@@ -162,4 +162,36 @@ public class TestConvertWeight {
         
         assertEquals(-1, ConWeight.converting(weight, MILLIGRAMM, CENTNER), EPS);
     }
+    
+    
+    @Test
+    //Тест на конвертирование из системы СИ
+    public void testConFromSi1() {
+        double weight = 4.6;
+        double kg = ConWeight.conToKG(weight, ConWeight.GRAMM);
+        double resultSi = kg / values[ConWeight.KVITAL];
+
+        assertEquals(resultSi, ConWeight.converting(weight, ConWeight.GRAMM, ConWeight.KVITAL), EPS);
+    } 
+     
+    @Test
+    //Тест на конвертирование из Американской системы
+    public void testConFromUSA1() {
+        double weight = 3.2;
+        double kg = ConWeight.conToKG(weight, ConWeight.KVITAL);
+        double resultSi = kg / values[ConWeight.DOLY];
+
+        assertEquals(resultSi, ConWeight.converting(weight, ConWeight.KVITAL, ConWeight.DOLY), EPS);
+    } 
+     
+    @Test
+    //Тест на конвертирование из Старорусской системы
+    public void testConFromRUS1() {
+        double weight = 45.1;
+        double kg = ConWeight.conToKG(weight, ConWeight.ZOLOTNIK);
+        double resultSi = kg / values[ConWeight.TONNA];
+
+        assertEquals(resultSi, ConWeight.converting(weight, ConWeight.ZOLOTNIK, ConWeight.TONNA), EPS);
+    } 
+     
 }
