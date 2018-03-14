@@ -151,4 +151,15 @@ public class TestConvertWeight {
         
         assertEquals(-1, ConWeight.conToKG(weight, DECIMETR), EPS);
     }
+    
+        
+    @Test
+    //Тест на конвертирование для непредусмотренных единиц измерения
+    public void testConEx1() {
+        double weight = 2.0;
+        int MILLIGRAMM = 10;
+        int CENTNER = -1;
+        
+        assertEquals(-1, ConWeight.converting(weight, MILLIGRAMM, CENTNER), EPS);
+    }
 }
