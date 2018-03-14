@@ -44,15 +44,20 @@ public class ConLenght {
     };
         
     /**
-     * Конвертирование полученного значения длины в метры
+     * Конвертирование полученного значения длины в метры по формуле: 
+     * длина * коэффициент перевода в метры для полученной единицы измерения
      * @param length длина, которую необходимо конфертировать, тип double
-     * @param system номер системы, из которой конвертируем, тип int
-     * @return полученная в результате конвертирования длина в метрах, тип double 
+     * @param edIzm единица измерения, из которой конвертируем, тип int
+     * @return полученная в результате конвертирования длина в метрах, тип double
+     * @throws return -1 в случае, если передается непредусмотренная единица измерения  
      */
-    public static double conToM(double length, int system) {
-        return length * values[system];
+    public static double conToM(double length, int edIzm) {
+        if (edIzm < 0 || edIzm > 9)
+            return -1;
+        else
+            return length * values[edIzm];
     }
-        
+    
     /**
      * Конвертирование длины из одной системы в другую
      * @param length длины, которую необходимо конфертировать, тип double
