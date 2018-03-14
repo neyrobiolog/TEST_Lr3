@@ -150,4 +150,14 @@ public class TestConvertLength {
         
         assertEquals(-1, ConLenght.conToM(length, DECIMETR), EPS);
     }
+    
+    @Test
+    //Тест на конвертирование для непредусмотренных единиц измерения
+    public void testConEx1() {
+        double length = 2.0;
+        int MILLIMETER = 10;
+        int DECIMETR = -1;
+        
+        assertEquals(-1, ConLenght.converting(length, MILLIMETER, DECIMETR), EPS);
+    }
 }
