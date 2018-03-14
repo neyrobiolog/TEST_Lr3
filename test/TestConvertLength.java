@@ -160,4 +160,35 @@ public class TestConvertLength {
         
         assertEquals(-1, ConLenght.converting(length, MILLIMETER, DECIMETR), EPS);
     }
+    
+        
+    @Test
+    //Тест на конвертирование из системы СИ
+    public void testConFromSi1() {
+        double length = 4.6;
+        double metr = ConLenght.conToM(length, ConLenght.CANTIMETER);
+        double resultSi = metr / values[ConLenght.MILE];
+
+        assertEquals(resultSi, ConLenght.converting(length, ConLenght.CANTIMETER, ConLenght.MILE), EPS);
+    } 
+     
+    @Test
+    //Тест на конвертирование из Американской системы
+    public void testConFromUSA1() {
+        double length = 3.2;
+        double metr = ConLenght.conToM(length, ConLenght.YARD);
+        double resultSi = metr / values[ConLenght.VERSTA];
+
+        assertEquals(resultSi, ConLenght.converting(length, ConLenght.YARD, ConLenght.VERSTA), EPS);
+    } 
+     
+    @Test
+    //Тест на конвертирование из Старорусской системы
+    public void testConFromRUS1() {
+        double length = 45.1;
+        double metr = ConLenght.conToM(length, ConLenght.SAZHEN);
+        double resultSi = metr / values[ConLenght.KILOMETER];
+
+        assertEquals(resultSi, ConLenght.converting(length, ConLenght.SAZHEN, ConLenght.KILOMETER), EPS);
+    } 
 }
