@@ -161,15 +161,15 @@ public class Main extends javax.swing.JFrame {
      */
     private void cbConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbConverterActionPerformed
         //Сосчитали значение категории
-        String item = (String) cbConverter.getItemAt(cbConverter.getSelectedIndex());
+        int item = cbConverter.getSelectedIndex();
         
         switch(item)
         {
-            case "Масса":
+            case 0: //масса
             initSystems(0);
             break;
             
-            case "Длина":
+            case 1: //длина
             initSystems(1);
             break;
         }
@@ -196,17 +196,17 @@ public class Main extends javax.swing.JFrame {
             {
                 double buf = Double.parseDouble(val);
                 //Сосчитали категорию 
-                String item = (String) cbConverter.getItemAt(cbConverter.getSelectedIndex());
+                int item = cbConverter.getSelectedIndex();
                 
                 switch(item)
                 {
-                    case "Масса":
+                    case 0: //масса
                     {
                         double result = ConWeight.converting(buf, cbSystem1.getSelectedIndex(), cbSystem2.getSelectedIndex());
                                         tfResult.setText(String.valueOf(result));
                     } break;
                     
-                    case "Длина":
+                    case 1: //длина
                     {
                         double result = ConLenght.converting(buf, cbSystem1.getSelectedIndex(), cbSystem2.getSelectedIndex());
                                         tfResult.setText(String.valueOf(result));
