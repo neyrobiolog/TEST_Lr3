@@ -27,27 +27,27 @@ public class TestConvertWeight {
     //Тест на проверку значений конвертирования в килограммы для СИ
    public void conToKGSITest() {
         ConWeight weight = new ConWeight();
-        assertEquals(0.001, weight.values[0], EPS);     //граммы
-        assertEquals(1, weight.values[1], EPS);         //килограммы
-        assertEquals(1000, weight.values[2], EPS);      //тонны
+        assertEquals(0.001, weight.getValues(weight.GRAMM), EPS);     //граммы
+        assertEquals(1, weight.getValues(weight.KILOGRAMM), EPS);         //килограммы
+        assertEquals(1000, weight.getValues(weight.TONNA), EPS);      //тонны
     }
    
        @Test
     //Тест на проверку значений конвертирования в килограммы для Американской системы
    public void conToKGUSATest() {
         ConWeight weight = new ConWeight();
-        assertEquals(43.36, weight.values[3], EPS);     //квитал
-        assertEquals(11.34, weight.values[4], EPS);     //кквартер
-        assertEquals(6.35, weight.values[5], EPS);      //стоун
+        assertEquals(43.36, weight.getValues(weight.KVITAL), EPS);     //квитал
+        assertEquals(11.34, weight.getValues(weight.KVARTER), EPS);     //кквартер
+        assertEquals(6.35, weight.getValues(weight.STOUN), EPS);      //стоун
     }
 
        @Test
     //Тест на проверку значений конвертирования в килограммы для Старорусской системы
    public void conToKGRUSTest() {
         ConWeight weight = new ConWeight();
-        assertEquals(0.01638, weight.values[6], EPS);     //лот
-        assertEquals(0.00426, weight.values[7], EPS);     //золотник
-        assertEquals(0.00004, weight.values[8], EPS);      //доля
+        assertEquals(0.01638, weight.getValues(weight.LOT), EPS);     //лот
+        assertEquals(0.00426, weight.getValues(weight.ZOLOTNIK), EPS);     //золотник
+        assertEquals(0.00004, weight.getValues(weight.DOLY), EPS);      //доля
     }
 
     @Test
@@ -58,20 +58,7 @@ public class TestConvertWeight {
         double result = weight.conToKG(2, 0);
         assertEquals(0.002, result, EPS);
     }
-        
-    //Значения перевода величин в килограммы
-    public static double[] values = {
-        0.001, //Грамм
-        1, //Киллограм
-        1000, //Тонна
-        43.36, //Квитал
-        11.34, //Квартер
-        6.35, //Стоун
-        0.01638, //Лот
-        0.00426, //Золотник
-        0.00004 //Доля
-    };
-    
+     
     @Test
     //Тест на конвертирование в килограммы (2)
     public void testConToKG() {
@@ -79,7 +66,7 @@ public class TestConvertWeight {
         for (int i = 0; i < 9; i++) 
         {
             double result = ConWeight.conToKG(weight, i);
-            assertEquals(values[i] * weight, result, EPS);
+            assertEquals(ConWeight.getValues(i) * weight, result, EPS);
         }
     }
     
@@ -92,9 +79,9 @@ public class TestConvertWeight {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConWeight.conToKG(weight, i);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConWeight.getValues(j);
+                double resultUsa = kg / ConWeight.getValues(j + 3);
+                double resultRus = kg / ConWeight.getValues(j + 6);
                 
                 assertEquals(resultSi, ConWeight.converting(weight, i, j), EPS);
                 assertEquals(resultUsa, ConWeight.converting(weight, i, j + 3), EPS);
@@ -112,9 +99,9 @@ public class TestConvertWeight {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConWeight.conToKG(weight, i + 3);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConWeight.getValues(j);
+                double resultUsa = kg / ConWeight.getValues(j + 3);
+                double resultRus = kg / ConWeight.getValues(j + 6);
                 
                 assertEquals(resultSi, ConWeight.converting(weight, i + 3, j), EPS);
                 assertEquals(resultUsa, ConWeight.converting(weight, i + 3, j + 3), EPS);
@@ -132,9 +119,9 @@ public class TestConvertWeight {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConWeight.conToKG(weight, i + 6);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConWeight.getValues(j);
+                double resultUsa = kg / ConWeight.getValues(j + 3);
+                double resultRus = kg / ConWeight.getValues(j + 6);
                 
                 assertEquals(resultSi, ConWeight.converting(weight, i + 6, j), EPS);
                 assertEquals(resultUsa, ConWeight.converting(weight, i + 6, j + 3), EPS);
@@ -169,7 +156,7 @@ public class TestConvertWeight {
     public void testConFromSi1() {
         double weight = 4.6;
         double kg = ConWeight.conToKG(weight, ConWeight.GRAMM);
-        double resultSi = kg / values[ConWeight.KVITAL];
+        double resultSi = kg / ConWeight.getValues(ConWeight.KVITAL);
 
         assertEquals(resultSi, ConWeight.converting(weight, ConWeight.GRAMM, ConWeight.KVITAL), EPS);
     } 
@@ -179,7 +166,7 @@ public class TestConvertWeight {
     public void testConFromUSA1() {
         double weight = 3.2;
         double kg = ConWeight.conToKG(weight, ConWeight.KVITAL);
-        double resultSi = kg / values[ConWeight.DOLY];
+        double resultSi = kg / ConWeight.getValues(ConWeight.DOLY);
 
         assertEquals(resultSi, ConWeight.converting(weight, ConWeight.KVITAL, ConWeight.DOLY), EPS);
     } 
@@ -189,7 +176,7 @@ public class TestConvertWeight {
     public void testConFromRUS1() {
         double weight = 45.1;
         double kg = ConWeight.conToKG(weight, ConWeight.ZOLOTNIK);
-        double resultSi = kg / values[ConWeight.TONNA];
+        double resultSi = kg / ConWeight.getValues(ConWeight.TONNA);
 
         assertEquals(resultSi, ConWeight.converting(weight, ConWeight.ZOLOTNIK, ConWeight.TONNA), EPS);
     } 

@@ -30,8 +30,8 @@ public class ConWeight {
     public static final int ZOLOTNIK = 7;   //Золотник
     public static final int DOLY = 8;       //Доля
     
-    //Значения перевода величин в килограммы
-    public static double[] values = {
+    //Массив коэффициентов конвертирования
+    private static double[] values = {
         0.001, //Грамм
         1, //Киллограм
         1000, //Тонна
@@ -42,6 +42,32 @@ public class ConWeight {
         0.00426, //Золотник
         0.00004 //Доля
     };
+    
+    /**
+     * Получить коэффициент конвертирования единицы измерения из массива по его индексу
+     * @param index индекс в массиве (или наименование единицы измерения), тип int
+     * @return коэффициент конвертирования, записанный по данному индексу, тип double
+     * @throws return -1 в случае, если передается индекс, выходящий за пределы массива коэффициентов
+     */
+    public static double getValues(int index) {
+       if (index < 0 || index > values.length)
+           return -1;
+       else
+           return values[index]; 
+    }
+    
+    /**
+     * Задать коэффициент конвертирования единицы измерения в массиве по его индексу
+     * @param index индекс в массиве (или наименование единицы измерения), тип int
+     * @param newValue новый коэффициент конвертирования, тип double
+     * @throws ничего не делать в случае, если передается индекс, выходящий за пределы массива коэффициентов
+     */
+    public static void setValues(int index, double newValue) {
+       if (index < 0 || index > values.length)
+           ;
+       else
+           values[index] = newValue; 
+    }
     
     /**
      * Конвертирование полученного значения массы в киллограммы по формуле: 
