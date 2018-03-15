@@ -30,8 +30,8 @@ public class ConLenght {
     public static final int SAZHEN = 7;     //Сажень
     public static final int ARSHIN = 8;     //Аршин
         
-    //Коэффициенты перевода в метры
-    public static double[] values = {
+    //Массив коэффициентов конвертирования
+    private static double[] values = {
         0.01,   //сантиметр
         1,      //метр
         1000,   //киллометр
@@ -42,6 +42,32 @@ public class ConLenght {
         2.133,//сажень
         0.711//аршин
     };
+    
+    /**
+     * Получить коэффициент конвертирования единицы измерения из массива по его индексу
+     * @param index индекс в массиве (или наименование единицы измерения), тип int
+     * @return коэффициент конвертирования, записанный по данному индексу, тип double
+     * @throws return -1 в случае, если передается индекс, выходящий за пределы массива коэффициентов
+     */
+    public static double getValues(int index) {
+       if (index < 0 || index > values.length)
+           return -1;
+       else
+           return values[index]; 
+    }
+    
+    /**
+     * Задать коэффициент конвертирования единицы измерения в массиве по его индексу
+     * @param index индекс в массиве (или наименование единицы измерения), тип int
+     * @param newValue новый коэффициент конвертирования, тип double
+     * @throws ничего не делать в случае, если передается индекс, выходящий за пределы массива коэффициентов
+     */
+    public static void setValues(int index, double newValue) {
+       if (index < 0 || index > values.length)
+           ;
+       else
+           values[index] = newValue; 
+    }
         
     /**
      * Конвертирование полученного значения длины в метры по формуле: 

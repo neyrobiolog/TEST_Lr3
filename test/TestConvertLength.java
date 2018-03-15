@@ -26,27 +26,27 @@ public class TestConvertLength {
     //Тест на проверку коэффициентов конвертирования в метры для СИ
    public void conToMSITest() {
         ConLenght weight = new ConLenght();
-        assertEquals(0.01, weight.values[0], EPS);     //сантиметры
-        assertEquals(1, weight.values[1], EPS);         //метры
-        assertEquals(1000, weight.values[2], EPS);      //километры
+        assertEquals(0.01, weight.getValues(weight.CANTIMETER), EPS);     //сантиметры
+        assertEquals(1, weight.getValues(weight.METER), EPS);         //метры
+        assertEquals(1000, weight.getValues(weight.KILOMETER), EPS);      //километры
     }
     
    @Test
     //Тест на проверку коэффициентов конвертирования в метры для Американской системы
    public void conToMUSATest() {
         ConLenght weight = new ConLenght();
-        assertEquals(1852, weight.values[3], EPS);     //миля
-        assertEquals(0.3, weight.values[4], EPS);      //фут
-        assertEquals(0.9144, weight.values[5], EPS);   //ярд
+        assertEquals(1852, weight.getValues(weight.MILE), EPS);     //миля
+        assertEquals(0.3, weight.getValues(weight.FUT), EPS);      //фут
+        assertEquals(0.9144, weight.getValues(weight.YARD), EPS);   //ярд
     }
 
     @Test
     //Тест на проверку коэффициентов конвертирования в метры для Старорусской системы
     public void conToMRUSTest() {
         ConLenght weight = new ConLenght();
-        assertEquals(1066.8, weight.values[6], EPS);    //верста
-        assertEquals(2.133, weight.values[7], EPS);     //сажень
-        assertEquals(0.711, weight.values[8], EPS);     //аршин
+        assertEquals(1066.8, weight.getValues(weight.VERSTA), EPS);    //верста
+        assertEquals(2.133, weight.getValues(weight.SAZHEN), EPS);     //сажень
+        assertEquals(0.711, weight.getValues(weight.ARSHIN), EPS);     //аршин
     }
 
     @Test
@@ -57,19 +57,6 @@ public class TestConvertLength {
         assertEquals(0.02, result, EPS);
     }
          
-    //Коэффициенты перевода в метры
-    public static double[] values = {
-        0.01,   //сантиметр
-        1,      //метр
-        1000,   //киллометр
-        1852,   //миля
-        0.3,    //фут
-        0.9144, //ярд
-        1066.8,//верста
-        2.133,//сажень
-        0.711//аршин
-    };
-      
     @Test
     //Тест на конвертирование в метры (2)
     public void сonToMTest2() {
@@ -77,7 +64,7 @@ public class TestConvertLength {
         for (int i = 0; i < 9; i++) 
         {
             double result = ConLenght.conToM(weight, i);
-            assertEquals(values[i] * weight, result, EPS);
+            assertEquals(ConLenght.getValues(i) * weight, result, EPS);
         }
     }
         
@@ -90,9 +77,9 @@ public class TestConvertLength {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConLenght.conToM(weight, i);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConLenght.getValues(j);
+                double resultUsa = kg / ConLenght.getValues(j + 3);
+                double resultRus = kg / ConLenght.getValues(j + 6);
                 
                 assertEquals(resultSi, ConLenght.converting(weight, i, j), EPS);
                 assertEquals(resultUsa, ConLenght.converting(weight, i, j + 3), EPS);
@@ -110,9 +97,9 @@ public class TestConvertLength {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConLenght.conToM(weight, i + 3);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConLenght.getValues(j);
+                double resultUsa = kg / ConLenght.getValues(j + 3);
+                double resultRus = kg / ConLenght.getValues(j + 6);
                 
                 assertEquals(resultSi, ConLenght.converting(weight, i + 3, j), EPS);
                 assertEquals(resultUsa, ConLenght.converting(weight, i + 3, j + 3), EPS);
@@ -130,9 +117,9 @@ public class TestConvertLength {
             for(int j = 0; j < 3; j++) 
             {
                 double kg = ConLenght.conToM(weight, i + 6);
-                double resultSi = kg / values[j];
-                double resultUsa = kg / values[j + 3];
-                double resultRus = kg / values[j + 6];
+                double resultSi = kg / ConLenght.getValues(j);
+                double resultUsa = kg / ConLenght.getValues(j + 3);
+                double resultRus = kg / ConLenght.getValues(j + 6);
                 
                 assertEquals(resultSi, ConLenght.converting(weight, i + 6, j), EPS);
                 assertEquals(resultUsa, ConLenght.converting(weight, i + 6, j + 3), EPS);
@@ -167,7 +154,7 @@ public class TestConvertLength {
     public void testConFromSi1() {
         double length = 4.6;
         double metr = ConLenght.conToM(length, ConLenght.CANTIMETER);
-        double resultSi = metr / values[ConLenght.MILE];
+        double resultSi = metr / ConLenght.getValues(ConLenght.MILE);
 
         assertEquals(resultSi, ConLenght.converting(length, ConLenght.CANTIMETER, ConLenght.MILE), EPS);
     } 
@@ -177,7 +164,7 @@ public class TestConvertLength {
     public void testConFromUSA1() {
         double length = 3.2;
         double metr = ConLenght.conToM(length, ConLenght.YARD);
-        double resultSi = metr / values[ConLenght.VERSTA];
+        double resultSi = metr / ConLenght.getValues(ConLenght.VERSTA);
 
         assertEquals(resultSi, ConLenght.converting(length, ConLenght.YARD, ConLenght.VERSTA), EPS);
     } 
@@ -187,7 +174,7 @@ public class TestConvertLength {
     public void testConFromRUS1() {
         double length = 45.1;
         double metr = ConLenght.conToM(length, ConLenght.SAZHEN);
-        double resultSi = metr / values[ConLenght.KILOMETER];
+        double resultSi = metr / ConLenght.getValues(ConLenght.KILOMETER);
 
         assertEquals(resultSi, ConLenght.converting(length, ConLenght.SAZHEN, ConLenght.KILOMETER), EPS);
     } 
