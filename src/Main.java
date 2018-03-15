@@ -14,6 +14,26 @@ import javax.swing.JOptionPane;
  */
 public class Main extends javax.swing.JFrame {
 
+    //Enum категорий конвертирования: масса | длина
+    public enum Categoria { 
+        WEIGHT(0), 
+        LENGHT(1); 
+    
+        private int id;
+        
+        Categoria(int id) {
+            this.id = id;
+        }
+        
+        public int getId() {
+            return id;
+        }
+    }
+    
+    //Объявление enum категорий конвертирования
+    Categoria[] categoria = Categoria.values();
+    Categoria curCategoria = Categoria.WEIGHT;
+    
     //Массив единиц измерения веса
     public static String[] weight = {
         "грамм", "килограмм", "тонна", "квитал", "квартер", "стоун", "лот", "золотник", "доля"
@@ -29,7 +49,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        init(); //Первоначальная инициализация
+        initSystems(); //Первоначальная инициализация
     }
 
     /**
@@ -162,17 +182,10 @@ public class Main extends javax.swing.JFrame {
     private void cbConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbConverterActionPerformed
         //Сосчитали значение категории
         int item = cbConverter.getSelectedIndex();
+        curCategoria = categoria[item]; 
         
-        switch(item)
-        {
-            case 0: //масса
-            initSystems(0);
-            break;
-            
-            case 1: //длина
-            initSystems(1);
-            break;
-        }
+        //Инициализация ComboBox единицами измерения
+        initSystems();
         
         tfValue.setText("");
         tfResult.setText("Конвертированное значение");
@@ -195,18 +208,16 @@ public class Main extends javax.swing.JFrame {
             try
             {
                 double buf = Double.parseDouble(val);
-                //Сосчитали категорию 
-                int item = cbConverter.getSelectedIndex();
                 
-                switch(item)
+                switch(curCategoria)
                 {
-                    case 0: //масса
+                    case WEIGHT:
                     {
                         double result = ConWeight.converting(buf, cbSystem1.getSelectedIndex(), cbSystem2.getSelectedIndex());
                                         tfResult.setText(String.valueOf(result));
                     } break;
                     
-                    case 1: //длина
+                    case LENGHT:
                     {
                         double result = ConLenght.converting(buf, cbSystem1.getSelectedIndex(), cbSystem2.getSelectedIndex());
                                         tfResult.setText(String.valueOf(result));
@@ -221,42 +232,32 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConvertActionPerformed
 
     /**
-     * Инициализия ComboBox с системами 
-     * @param cmd 0 - масса ИЛИ 1 - длина 
+     * Инициализия ComboBox с единицами измерения
      */
-    public void initSystems(int cmd) {
+    public void initSystems() {
         //Очистили значения
         cbSystem1.removeAllItems();
         cbSystem2.removeAllItems();
         
-        //Если категория масс
-        if(cmd == 0) 
+        //Заполняем ComboBox единицами измерения из массива
+        switch(curCategoria)
         {
-            //Заполняем из массива единицами измерения
-            for(int i = 0; i < weight.length; i++) 
-            {
-                cbSystem1.addItem(weight[i]);
-                cbSystem2.addItem(weight[i]);
-            }
-        } 
-        
-        //Если категория длин
-        else if(cmd == 1) 
-        {
-            //Заполняем из массива единицами измерения
-            for(int i = 0; i < length.length; i++) 
-            {
-                cbSystem1.addItem(length[i]);
-                cbSystem2.addItem(length[i]);
-            }
+            case WEIGHT:
+                for(int i = 0; i < weight.length; i++) 
+                {
+                    cbSystem1.addItem(weight[i]);
+                    cbSystem2.addItem(weight[i]);
+                }
+                break;
+            
+            case LENGHT:
+                for(int i = 0; i < length.length; i++) 
+                {
+                    cbSystem1.addItem(length[i]);
+                    cbSystem2.addItem(length[i]);
+                }
+                break;
         }
-    }
-    
-    /**
-     * Инициализация категории по умолчанию (масса)
-     */
-    public void init() {
-        initSystems(0);
     }
     
     /**
